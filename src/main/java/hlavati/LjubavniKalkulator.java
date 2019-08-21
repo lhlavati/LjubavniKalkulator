@@ -27,57 +27,121 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblOna = new javax.swing.JLabel();
+        lblOn = new javax.swing.JLabel();
+        txtOna = new javax.swing.JTextField();
+        txtOn = new javax.swing.JTextField();
+        btnVoleSe = new javax.swing.JButton();
+        lblPostotak = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ljubavni Kalkulator");
+
+        lblOna.setFont(new java.awt.Font("Edwardian Script ITC", 0, 36)); // NOI18N
+        lblOna.setText("Ona");
+
+        lblOn.setFont(new java.awt.Font("Edwardian Script ITC", 0, 36)); // NOI18N
+        lblOn.setText("On");
+
+        txtOna.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtOn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        btnVoleSe.setIcon(new javax.swing.ImageIcon("C:\\Users\\dumbi\\Downloads\\srce.png")); // NOI18N
+        btnVoleSe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoleSeActionPerformed(evt);
+            }
+        });
+
+        lblPostotak.setFont(new java.awt.Font("Edwardian Script ITC", 0, 36)); // NOI18N
+        lblPostotak.setText("Vole se  56%");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(txtOna, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(txtOn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(lblPostotak, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVoleSe)
+                .addGap(149, 149, 149))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(lblOna)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblOn)
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOna)
+                    .addComponent(lblOn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtOna, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVoleSe)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPostotak)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void btnVoleSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoleSeActionPerformed
+        
+    }//GEN-LAST:event_btnVoleSeActionPerformed
+
+    private String slaganjePoAbecedi(){
+        
+        String imeZ = txtOna.getText();
+        String imeM = txtOn.getText();
+        String slova = imeZ + imeM;
+        char temp;
+        String malaSlova = slova.toLowerCase();
+        char [] charmalaSlova = malaSlova.toCharArray();
+        for(int i = 1; i < charmalaSlova.length; i++){
+            for (int j = 0; j < charmalaSlova.length - 1; j++) {
+                if(charmalaSlova[j] > charmalaSlova[j+1]){
+                    temp = charmalaSlova[j];
+                    charmalaSlova[j] = charmalaSlova[j+1];
+                    charmalaSlova[j+1] = temp;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LjubavniKalkulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LjubavniKalkulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LjubavniKalkulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LjubavniKalkulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LjubavniKalkulator().setVisible(true);
-            }
-        });
+        return String.valueOf(charmalaSlova);
+        
     }
-
+    
+     private void zbrojSlova(){
+         
+         
+         
+     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVoleSe;
+    private javax.swing.JLabel lblOn;
+    private javax.swing.JLabel lblOna;
+    private javax.swing.JLabel lblPostotak;
+    private javax.swing.JTextField txtOn;
+    private javax.swing.JTextField txtOna;
     // End of variables declaration//GEN-END:variables
 }
