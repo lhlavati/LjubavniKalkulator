@@ -106,16 +106,13 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoleSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoleSeActionPerformed
-        
+        slaganjePoAbecedi();
     }//GEN-LAST:event_btnVoleSeActionPerformed
 
     private String slaganjePoAbecedi(){
         
-        String imeZ = txtOna.getText();
-        String imeM = txtOn.getText();
-        String slova = imeZ + imeM;
+        String malaSlova = ((txtOna.getText() + txtOn.getText()).toLowerCase());
         char temp;
-        String malaSlova = slova.toLowerCase();
         char [] charmalaSlova = malaSlova.toCharArray();
         for(int i = 1; i < charmalaSlova.length; i++){
             for (int j = 0; j < charmalaSlova.length - 1; j++) {
@@ -130,10 +127,21 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
         
     }
     
-     private void zbrojSlova(){
-         
-         
-         
+     private void brojacSlova(){
+        int brojac = 1;
+        int suma1 = 0;
+        int suma2 = 0;
+        
+        for (int i = 0; i < slaganjePoAbecedi().length(); i++) {
+            for (int j = 1; j < slaganjePoAbecedi().length(); j++) {
+                
+                if(slaganjePoAbecedi().charAt(i) == slaganjePoAbecedi().charAt(j)){
+                    suma1 = i + j;
+                }
+                
+            }
+        }
+        
      }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
