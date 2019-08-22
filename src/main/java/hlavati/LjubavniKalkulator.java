@@ -5,6 +5,10 @@
  */
 package hlavati;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Luka
@@ -33,6 +37,7 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
         txtOn = new javax.swing.JTextField();
         btnVoleSe = new javax.swing.JButton();
         lblPostotak = new javax.swing.JLabel();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ljubavni Kalkulator");
@@ -57,48 +62,61 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
         lblPostotak.setFont(new java.awt.Font("Edwardian Script ITC", 0, 36)); // NOI18N
         lblPostotak.setText("Vole se  56%");
 
+        btnReset.setFont(new java.awt.Font("Edwardian Script ITC", 0, 28)); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(txtOna, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(txtOn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(lblPostotak, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(80, 80, 80)
+                .addComponent(txtOna, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(txtOn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVoleSe)
-                .addGap(149, 149, 149))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(97, 97, 97)
                 .addComponent(lblOna)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblOn)
-                .addGap(100, 100, 100))
+                .addGap(98, 98, 98))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVoleSe)
+                        .addGap(149, 149, 149))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblPostotak, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 123, 123))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnReset)
+                        .addGap(153, 153, 153))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblOna)
-                    .addComponent(lblOn))
+                    .addComponent(lblOn)
+                    .addComponent(lblOna))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtOna, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtOn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnVoleSe)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPostotak)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReset)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,8 +124,14 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoleSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoleSeActionPerformed
-        slaganjePoAbecedi();
+        brojacSlova();
     }//GEN-LAST:event_btnVoleSeActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtOna.setText("");
+        txtOn.setText("");
+        
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private String slaganjePoAbecedi(){
         
@@ -128,23 +152,22 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
     }
     
      private void brojacSlova(){
-        int brojac = 1;
-        int suma1 = 0;
-        int suma2 = 0;
         
+        Map<Character,Integer> mapa = new HashMap<>();
         for (int i = 0; i < slaganjePoAbecedi().length(); i++) {
-            for (int j = 1; j < slaganjePoAbecedi().length(); j++) {
-                
-                if(slaganjePoAbecedi().charAt(i) == slaganjePoAbecedi().charAt(j)){
-                    suma1 = i + j;
-                }
-                
+            char c = slaganjePoAbecedi().charAt(i);
+            if (mapa.containsKey(c)) {
+                int brojac = mapa.get(c);
+                mapa.put(c, ++brojac);
+            } else {
+                mapa.put(c, 1);
             }
         }
-        
+         System.out.println(mapa);
      }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnVoleSe;
     private javax.swing.JLabel lblOn;
     private javax.swing.JLabel lblOna;
