@@ -5,9 +5,11 @@
  */
 package hlavati;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -130,32 +132,33 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtOna.setText("");
         txtOn.setText("");
-        
+
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private String slaganjePoAbecedi(){
-        
+    private String slaganjePoAbecedi() {
+
         String malaSlova = ((txtOna.getText() + txtOn.getText()).toLowerCase());
         char temp;
-        char [] charmalaSlova = malaSlova.toCharArray();
-        for(int i = 1; i < charmalaSlova.length; i++){
+        char[] charmalaSlova = malaSlova.toCharArray();
+        for (int i = 1; i < charmalaSlova.length; i++) {
             for (int j = 0; j < charmalaSlova.length - 1; j++) {
-                if(charmalaSlova[j] > charmalaSlova[j+1]){
+                if (charmalaSlova[j] > charmalaSlova[j + 1]) {
                     temp = charmalaSlova[j];
-                    charmalaSlova[j] = charmalaSlova[j+1];
-                    charmalaSlova[j+1] = temp;
+                    charmalaSlova[j] = charmalaSlova[j + 1];
+                    charmalaSlova[j + 1] = temp;
                 }
             }
         }
+        System.out.println(charmalaSlova);
         return String.valueOf(charmalaSlova);
-        
+
     }
-    
-     private void brojacSlova(){
-        
-        Map<Character,Integer> mapa = new HashMap<>();
+
+    private void brojacSlova() {
+        char c;
+        Map<Character, Integer> mapa = new HashMap<>();
         for (int i = 0; i < slaganjePoAbecedi().length(); i++) {
-            char c = slaganjePoAbecedi().charAt(i);
+            c = slaganjePoAbecedi().charAt(i);
             if (mapa.containsKey(c)) {
                 int brojac = mapa.get(c);
                 mapa.put(c, ++brojac);
@@ -163,9 +166,33 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
                 mapa.put(c, 1);
             }
         }
-         System.out.println(mapa);
-     }
-    
+        TreeMap<Character, Integer> sortiraj = new TreeMap<>();
+        sortiraj.putAll(mapa);
+        System.out.println(sortiraj);
+
+        Collection<Integer> vrijednosti = sortiraj.values();
+        Integer[] niz = vrijednosti.toArray(new Integer[vrijednosti.size()]);
+        System.out.println(Arrays.deepToString(niz));
+        
+        Integer[] suma = new Integer[niz.length / 2];
+        int j = 0;
+        
+        izlaz: while (suma.length >= 2) {
+            for (int i = 0; i <= niz.length - 2; i++) {
+                if (i % 2 == 0 && j < suma.length) {
+                    suma[j++] = niz[i] + niz[i + 1];
+                }
+            }
+            if(j == suma.length){
+                System.arraycopy(suma, 0, niz, 0, suma.length);
+                j = 0;
+            }
+            System.out.println(Arrays.toString(suma));
+        }
+        
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnVoleSe;
