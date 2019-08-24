@@ -150,7 +150,7 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
                 }
             }
         }
-        return String.valueOf(charmalaSlova);
+        return String.valueOf(charmalaSlova).trim();
 
     }
 
@@ -178,41 +178,196 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
         Integer[] suma1 = new Integer[suma.length / 2];
         Integer[] sumaN = new Integer[niz.length / 2 + 1];
         Integer[] sumaN1 = new Integer[suma.length / 2 + 1];
+        Integer[] sumaNN = new Integer[suma1.length / 2 + 1];
+        Integer[] sumaNN1 = new Integer[sumaN1.length / 2 + 1];
+        Integer[] sumaNPP = new Integer[sumaN.length / 2];
+        Integer[] sumaNPPP = new Integer[sumaNPP.length / 2];
         int j = 0;
-        if (niz.length % 2 == 0) {
+        if (niz.length <= 8) {
+            if (niz.length % 2 == 0) {
 
-            for (int i = 0; i <= niz.length - 2; i++) {
-                if (i % 2 == 0 && j < niz.length / 2) {
-                    niz[j++] = niz[i] + niz[i + 1];
-                }
-            }
-            System.arraycopy(niz, 0, suma, 0, suma.length);
-            System.out.println(Arrays.toString(suma));
-            j = 0;
-            if (suma.length % 2 == 0) {
-                for (int i = 0; i <= suma.length - 2; i++) {
-                    if (i % 2 == 0 && j < suma.length / 2) {
-                        suma[j++] = suma[i] + suma[i + 1];
+                for (int i = 0; i <= niz.length - 2; i++) {
+                    if (i % 2 == 0 && j < niz.length / 2) {
+                        niz[j++] = niz[i] + niz[i + 1];
                     }
                 }
-                System.arraycopy(suma, 0, suma1, 0, suma1.length);
-                System.out.println(Arrays.toString(suma1));
-                lblPostotak.setText("Vole se " + String.valueOf(suma1[0]) + String.valueOf(suma1[1] + "%"));
+                System.arraycopy(niz, 0, suma, 0, suma.length);
+                System.out.println(Arrays.toString(suma));
+                j = 0;
+                if (suma.length % 2 == 0) {
+                    for (int i = 0; i <= suma.length - 2; i++) {
+                        if (i % 2 == 0 && j < suma.length / 2) {
+                            suma[j++] = suma[i] + suma[i + 1];
+                        }
+                    }
+                    System.arraycopy(suma, 0, suma1, 0, suma1.length);
+                    for (int i = 0; i <= suma1.length - 1; i++) {
+                        if (suma1[i] > 9) {
+                            suma1[i] = Integer.valueOf(suma1[i].toString().substring(1));
+                        }
+                    }
+                    System.out.println(Arrays.toString(suma1));
+                    lblPostotak.setText("Vole se " + String.valueOf(suma1[0]) + String.valueOf(suma1[1] + "%"));
+                } else {
+                    for (int i = 0; i <= suma.length - 2; i++) {
+                        if (i % 2 == 0 && j < suma.length / 2 + 1) {
+                            suma[j++] = suma[i] + suma[i + 1];
+                        }
+                        suma[1] = suma[suma.length - 1];
+                    }
+                    System.arraycopy(suma, 0, sumaN1, 0, sumaN1.length);
+                    for (int i = 0; i <= sumaN1.length - 1; i++) {
+                        if (sumaN1[i] > 9) {
+                            sumaN1[i] = Integer.valueOf(sumaN1[i].toString().substring(1));
+                        }
+                    }
+                    System.out.println(Arrays.toString(sumaN1));
+                    lblPostotak.setText("Vole se " + String.valueOf(sumaN1[0]) + String.valueOf(sumaN1[1] + "%"));
+                }
             } else {
-                for (int i = 0; i <= suma.length - 2; i++) {
-                    if (i % 2 == 0 && j < suma.length / 2 + 1) {
-                        suma[j++] = suma[i] + suma[i + 1];
+
+                for (int i = 0; i <= niz.length - 2; i++) {
+                    if (i % 2 == 0 && j < niz.length / 2) {
+                        niz[j++] = niz[i] + niz[i + 1];
                     }
                 }
-                System.arraycopy(suma, 0, sumaN1, 0, sumaN1.length);
-                System.out.println(Arrays.toString(sumaN1));
-                lblPostotak.setText("Vole se " + String.valueOf(sumaN1[0]) + String.valueOf(sumaN1[1] + "%"));
+                System.arraycopy(niz, 0, sumaN, 0, sumaN.length);
+                System.out.println(Arrays.toString(sumaN));
+                j = 0;
+                if (sumaN.length % 2 == 0) {
+                    for (int i = 0; i <= sumaN.length - 2; i++) {
+                        if (i % 2 == 0 && j < sumaN.length / 2) {
+                            sumaN[j++] = sumaN[i] + sumaN[i + 1];
+                        }
+                    }
+                    System.arraycopy(sumaN, 0, sumaN1, 0, sumaN1.length);
+                    for (int i = 0; i <= sumaN1.length - 1; i++) {
+                        if (sumaN1[i] > 9) {
+                            sumaN1[i] = Integer.valueOf(sumaN1[i].toString().substring(1));
+                        }
+                    }
+                    System.out.println(Arrays.toString(sumaN1));
+                    lblPostotak.setText("Vole se " + String.valueOf(sumaN1[0]) + String.valueOf(sumaN1[1] + "%"));
+                } else {
+                    for (int i = 0; i <= sumaN.length - 2; i++) {
+                        if (i % 2 == 0 && j < sumaN.length / 2 + 1) {
+                            sumaN[j++] = sumaN[i] + sumaN[i + 1];
+                        }
+                        sumaN[1] = sumaN[sumaN.length - 1];
+                    }
+                    System.arraycopy(sumaN, 0, sumaN1, 0, sumaN1.length);
+                    System.out.println(Arrays.toString(sumaN1));
+                    lblPostotak.setText("Vole se " + String.valueOf(sumaN1[0]) + String.valueOf(sumaN1[1] + "%"));
+                }
             }
         } else {
 
-            for (int i = 0; i <= sumaN.length - 2; i++) {
-                if (i % 2 == 0 && j < sumaN.length / 2) {
-                    sumaN[j++] = sumaN[i] + sumaN[i + 1];
+            if (niz.length % 2 == 0) {
+
+                for (int i = 0; i <= niz.length - 2; i++) {
+                    if (i % 2 == 0 && j < niz.length / 2) {
+                        niz[j++] = niz[i] + niz[i + 1];
+                    }
+                }
+                System.arraycopy(niz, 0, suma, 0, suma.length);
+                System.out.println(Arrays.toString(suma));
+                j = 0;
+                if (suma.length % 2 == 0) {
+                    for (int i = 0; i <= suma.length - 2; i++) {
+                        if (i % 2 == 0 && j < suma.length / 2) {
+                            suma[j++] = suma[i] + suma[i + 1];
+                        }
+                    }
+                    System.arraycopy(suma, 0, suma1, 0, suma1.length);
+                    System.out.println(Arrays.toString(suma1));
+                    j = 0;
+                    for (int i = 0; i <= suma1.length - 2; i++) {
+                        if (i % 2 == 0 && j < suma1.length / 2 + 1) {
+                            suma1[j++] = suma1[i] + suma1[i + 1];
+                        }
+                    }
+                    System.arraycopy(suma1, 0, sumaNN, 0, sumaNN.length);
+                    for (int i = 0; i <= sumaNN.length - 1; i++) {
+                        if (sumaNN[i] > 9) {
+                            sumaNN[i] = Integer.valueOf(sumaNN[i].toString().substring(1));
+                        }
+                    }
+                    System.out.println(Arrays.toString(sumaNN));
+                    lblPostotak.setText("Vole se " + String.valueOf(sumaNN[0]) + String.valueOf(sumaNN[1] + "%"));
+                } else {
+                    for (int i = 0; i <= suma.length - 2; i++) {
+                        if (i % 2 == 0 && j < suma.length / 2 + 1) {
+                            suma[j++] = suma[i] + suma[i + 1];
+                        }
+                    }
+                    System.arraycopy(suma, 0, sumaN1, 0, sumaN1.length);
+                    System.out.println(Arrays.toString(sumaN1));
+                    j = 0;
+
+                    for (int i = 0; i <= sumaN1.length - 2; i++) {
+                        if (i % 2 == 0 && j < sumaN1.length / 2 + 1) {
+                            sumaN1[j++] = sumaN1[i] + sumaN1[i + 1];
+                        }
+                        sumaN1[1] = sumaN1[sumaN1.length - 1];
+                    }
+                    System.arraycopy(sumaN1, 0, sumaNN1, 0, sumaNN1.length);
+                    for (int i = 0; i <= sumaNN1.length - 1; i++) {
+                        if (sumaNN1[i] > 9) {
+                            sumaNN1[i] = Integer.valueOf(sumaNN1[i].toString().substring(1));
+                        }
+                    }
+                    System.out.println(Arrays.toString(sumaNN1));
+                    lblPostotak.setText("Vole se " + String.valueOf(sumaNN1[0]) + String.valueOf(sumaNN1[1] + "%"));
+                }
+            } else {
+
+                for (int i = 0; i <= niz.length - 2; i++) {
+                    if (i % 2 == 0 && j < niz.length / 2 + 1) {
+                        niz[j++] = niz[i] + niz[i + 1];
+                    }
+                }
+                System.arraycopy(niz, 0, sumaN, 0, sumaN.length);
+                sumaN[sumaN.length - 1] = niz[niz.length - 1];
+                System.out.println(Arrays.toString(sumaN));
+                j = 0;
+                if (sumaN.length % 2 == 0) {
+                    for (int i = 0; i <= sumaN.length - 2; i++) {
+                        if (i % 2 == 0 && j < sumaN.length / 2) {
+                            sumaN[j++] = sumaN[i] + sumaN[i + 1];
+                        }
+                    }
+                    System.arraycopy(sumaN, 0, sumaNPP, 0, sumaNPP.length);
+                    for (int i = 0; i <= sumaNPP.length - 1; i++) {
+                        if (sumaNPP[i] > 9) {
+                            sumaNPP[i] = Integer.valueOf(sumaNPP[i].toString().substring(1));
+                        }
+                    }
+                    System.out.println(Arrays.toString(sumaNPP));
+                    j = 0;
+                    for (int i = 0; i <= sumaNPP.length - 2; i++) {
+                        if (i % 2 == 0 && j < sumaNPP.length / 2) {
+                            sumaNPP[j++] = sumaNPP[i] + sumaNPP[i + 1];
+                        }
+                    }
+
+                    System.arraycopy(sumaNPP, 0, sumaNPPP, 0, sumaNPPP.length);
+                    for (int i = 0; i <= sumaNPPP.length - 1; i++) {
+                        if (sumaNPPP[i] > 9) {
+                            sumaNPPP[i] = Integer.valueOf(sumaNPPP[i].toString().substring(1));
+                        }
+                    }
+                    System.out.println(Arrays.toString(sumaNPPP));
+                    lblPostotak.setText("Vole se " + String.valueOf(sumaNPPP[0]) + String.valueOf(sumaNPPP[1] + "%"));
+                } else {
+                    for (int i = 0; i <= sumaN.length - 2; i++) {
+                        if (i % 2 == 0 && j < sumaN.length / 2 + 1) {
+                            sumaN[j++] = sumaN[i] + sumaN[i + 1];
+                        }
+                        sumaN[1] = sumaN[sumaN.length - 1];
+                    }
+                    System.arraycopy(sumaN, 0, sumaN1, 0, sumaN1.length);
+                    System.out.println(Arrays.toString(sumaN1));
+                    lblPostotak.setText("Vole se " + String.valueOf(sumaN1[0]) + String.valueOf(sumaN1[1] + "%"));
                 }
             }
 
