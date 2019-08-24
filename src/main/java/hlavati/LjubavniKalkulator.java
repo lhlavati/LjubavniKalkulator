@@ -133,7 +133,7 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtOna.setText("");
         txtOn.setText("");
-
+        lblPostotak.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     private String slaganjePoAbecedi() {
@@ -175,29 +175,48 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
         System.out.println(Arrays.deepToString(niz));
 
         Integer[] suma = new Integer[niz.length / 2];
-        int j = 0;
-        
-        for (int i = 0; i <= niz.length - 2; i++) {
-            if (i % 2 == 0 && j < niz.length / 2) {
-                niz[j++] = niz[i] + niz[i + 1];
-            }
-        }
-        System.arraycopy(niz, 0, suma, 0, suma.length);
-        System.out.println(Arrays.toString(suma));
-        if (j == niz.length / 2) {
-            j = 0;
-        }
-        
         Integer[] suma1 = new Integer[suma.length / 2];
-        for (int i = 0; i <= suma.length -2; i++) {
-            if (i % 2 == 0 && j < suma.length / 2) {
-                suma[j++] = suma[i] + suma[i + 1];
+        Integer[] sumaN = new Integer[niz.length / 2 + 1];
+        Integer[] sumaN1 = new Integer[suma.length / 2 + 1];
+        int j = 0;
+        if (niz.length % 2 == 0) {
+
+            for (int i = 0; i <= niz.length - 2; i++) {
+                if (i % 2 == 0 && j < niz.length / 2) {
+                    niz[j++] = niz[i] + niz[i + 1];
+                }
             }
+            System.arraycopy(niz, 0, suma, 0, suma.length);
+            System.out.println(Arrays.toString(suma));
+            j = 0;
+            if (suma.length % 2 == 0) {
+                for (int i = 0; i <= suma.length - 2; i++) {
+                    if (i % 2 == 0 && j < suma.length / 2) {
+                        suma[j++] = suma[i] + suma[i + 1];
+                    }
+                }
+                System.arraycopy(suma, 0, suma1, 0, suma1.length);
+                System.out.println(Arrays.toString(suma1));
+                lblPostotak.setText("Vole se " + String.valueOf(suma1[0]) + String.valueOf(suma1[1] + "%"));
+            } else {
+                for (int i = 0; i <= suma.length - 2; i++) {
+                    if (i % 2 == 0 && j < suma.length / 2 + 1) {
+                        suma[j++] = suma[i] + suma[i + 1];
+                    }
+                }
+                System.arraycopy(suma, 0, sumaN1, 0, sumaN1.length);
+                System.out.println(Arrays.toString(sumaN1));
+                lblPostotak.setText("Vole se " + String.valueOf(sumaN1[0]) + String.valueOf(sumaN1[1] + "%"));
+            }
+        } else {
+
+            for (int i = 0; i <= sumaN.length - 2; i++) {
+                if (i % 2 == 0 && j < sumaN.length / 2) {
+                    sumaN[j++] = sumaN[i] + sumaN[i + 1];
+                }
+            }
+
         }
-        System.arraycopy(suma, 0, suma1, 0, suma1.length);
-        System.out.println(Arrays.toString(suma1));
-        lblPostotak.setText("Vole se " + String.valueOf(suma1[0]) + String.valueOf(suma1[1] + "%"));
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
